@@ -1,4 +1,4 @@
-package com.suleiman.pagination;
+package com.hoanglam.myapplication;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -19,8 +19,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.suleiman.pagination.models.Result;
-import com.suleiman.pagination.utils.PaginationAdapterCallback;
+import com.hoanglam.myapplication.models.Result;
+import com.hoanglam.myapplication.utils.PaginationAdapterCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private static final int LOADING = 1;
     private static final int HERO = 2;
 
-    private static final String BASE_URL_IMG = "https://image.tmdb.org/t/p/w150";
+    private static final String BASE_URL_IMG = "https://image.tmdb.org/t/p/w780";
 
     private List<Result> movieResults;
     private Context context;

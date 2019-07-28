@@ -1,4 +1,4 @@
-package com.suleiman.pagination.utils;
+package com.hoanglam.myapplication.utils;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

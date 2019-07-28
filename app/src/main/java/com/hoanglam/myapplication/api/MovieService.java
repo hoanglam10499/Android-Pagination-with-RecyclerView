@@ -1,7 +1,7 @@
-package com.suleiman.pagination.api;
+package com.hoanglam.myapplication.api;
 
 
-import com.suleiman.pagination.models.TopRatedMovies;
+import com.hoanglam.myapplication.models.TopRatedMovies;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

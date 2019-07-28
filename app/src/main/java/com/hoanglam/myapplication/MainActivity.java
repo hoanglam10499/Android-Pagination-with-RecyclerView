@@ -1,4 +1,4 @@
-package com.suleiman.pagination;
+package com.hoanglam.myapplication;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,19 +15,19 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.suleiman.pagination.api.MovieApi;
-import com.suleiman.pagination.api.MovieService;
-import com.suleiman.pagination.models.Result;
-import com.suleiman.pagination.models.TopRatedMovies;
-import com.suleiman.pagination.utils.PaginationAdapterCallback;
-import com.suleiman.pagination.utils.PaginationScrollListener;
+import com.hoanglam.myapplication.api.MovieApi;
+import com.hoanglam.myapplication.api.MovieService;
+import com.hoanglam.myapplication.models.Result;
+import com.hoanglam.myapplication.models.TopRatedMovies;
+import com.hoanglam.myapplication.utils.PaginationAdapterCallback;
+import com.hoanglam.myapplication.utils.PaginationScrollListener;
 
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class MainActivity extends AppCompatActivity implements PaginationAdapterCallback {
 
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements PaginationAdapter
 
         callTopRatedMoviesApi().enqueue(new Callback<TopRatedMovies>() {
             @Override
-            public void onResponse(Call<TopRatedMovies> call, Response<TopRatedMovies> response) {
+            public void onResponse(retrofit2.Call<TopRatedMovies> call, Response<TopRatedMovies> response) {
                 // Got data. Send it to adapter
 
                 hideErrorView();
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements PaginationAdapter
             }
 
             @Override
-            public void onFailure(Call<TopRatedMovies> call, Throwable t) {
+            public void onFailure(retrofit2.Call<TopRatedMovies> call, Throwable t) {
                 t.printStackTrace();
                 showErrorView(t);
             }
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements PaginationAdapter
 
         callTopRatedMoviesApi().enqueue(new Callback<TopRatedMovies>() {
             @Override
-            public void onResponse(Call<TopRatedMovies> call, Response<TopRatedMovies> response) {
+            public void onResponse(retrofit2.Call<TopRatedMovies> call, Response<TopRatedMovies> response) {
                 adapter.removeLoadingFooter();
                 isLoading = false;
 
@@ -166,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements PaginationAdapter
             }
 
             @Override
-            public void onFailure(Call<TopRatedMovies> call, Throwable t) {
+            public void onFailure(retrofit2.Call<TopRatedMovies> call, Throwable t) {
                 t.printStackTrace();
                 adapter.showRetry(true, fetchErrorMessage(t));
             }
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements PaginationAdapter
      * As {@link #currentPage} will be incremented automatically
      * by @{@link PaginationScrollListener} to load next page.
      */
-    private Call<TopRatedMovies> callTopRatedMoviesApi() {
+    private retrofit2.Call<TopRatedMovies> callTopRatedMoviesApi() {
         return movieService.getTopRatedMovies(
                 getString(R.string.my_api_key),
                 "en_US",
